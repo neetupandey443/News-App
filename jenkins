@@ -1,0 +1,59 @@
+Pipeline code:
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+                echo 'Cloning the repo...'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the app...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the app...'
+            }
+        }
+    }
+}
+
+______________________________________________
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone') {
+            steps {
+             retry(3) {
+                       
+                        bat '''
+                            echo First command
+                            echo Second command
+                            echo Third command
+                        '''
+                    }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Building the app...'
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo 'Deploying the app...'
+            }
+        }
+    }
+}
+
+
+
